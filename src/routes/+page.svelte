@@ -134,9 +134,7 @@
 	// Always scroll to bottom when anything happens
 
 	afterUpdate(() => {
-		if (connected) {
-			document.documentElement.scrollTop = document.documentElement.scrollHeight
-		}
+		document.documentElement.scrollTop = document.documentElement.scrollHeight
 	})
 
 	// Remove messages that are no longer on the screen
@@ -147,7 +145,7 @@
 	}
 </script>
 
-{#if !username}
+{#if !connected}
 	<input type="text" bind:value={username} />
 
 	<button on:click={connect}>Connect</button>
