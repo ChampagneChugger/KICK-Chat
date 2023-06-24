@@ -5,6 +5,7 @@
 	let socket: any
 	let username: string | null
 	let profile_pictures: string | null
+	let roles: string | null
 
 	let messages: any[] = []
 	let pinned: string = ""
@@ -111,6 +112,7 @@
 
 		username = $page.url.searchParams.get("username")
 		profile_pictures = $page.url.searchParams.get("pictures")
+		roles = $page.url.searchParams.get("roles")
 
 		socket.onopen = () => {
 			if (username) {
@@ -143,7 +145,7 @@
 				{#if profile_pictures != "0"}
 					<img src={message.pfp} alt="Profile" />
 				{/if}
-				{#if message.message.sender.identity.badges[0]}
+				{#if message.message.sender.identity.badges[0] && roles != "0"}
 					<span class="badge rainbow">
 						[{message.message.sender.identity.badges[0].text}]
 					</span>
