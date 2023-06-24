@@ -88,7 +88,7 @@
 
 		connected = "0"
 
-		const res = await fetch("https://kick.com/api/v2/channels/" + username)
+		const res = await fetch("https://kick.com/api/v2/channels/" + username?.toLowerCase())
 
 		const data = await res.json()
 
