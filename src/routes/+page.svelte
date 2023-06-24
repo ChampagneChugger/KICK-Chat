@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, afterUpdate } from "svelte"
 	import { page } from "$app/stores"
+	import { fly } from "svelte/transition"
 
 	let socket: any
 	let username: string | null
@@ -20,6 +21,24 @@
 		const { profile_pic } = data.user
 
 		return profile_pic
+	}
+
+	function messageFilter(input: any) {
+		let message: string = input.content
+		let badges: string[] = input.sender.identity.badges
+
+		// Add badges
+
+		let emojiPattern = /\[emote:(\d+):[^\]]+\]/g
+
+		//@ts-ignore
+		let messageNew = message.replace(emojiPattern, (match: string, number: string) => {
+			if (number) {
+				return "<img src='https://files.kick.com/emotes/" + number + "/fullsize' alt='Emoji'>"
+			}
+		})
+
+		return messageNew
 	}
 
 	// Main function with all functionality
@@ -126,13 +145,6 @@
 	afterUpdate(() => {
 		document.documentElement.scrollTop = document.documentElement.scrollHeight
 	})
-
-	// Remove messages that are no longer on the screen
-
-	$: if (messages.length > 30) {
-		messages.shift()
-		messages = messages
-	}
 </script>
 
 {#if connected == "0"}
@@ -141,9 +153,9 @@
 	<h1>{pinned}</h1>
 	<div class="messages">
 		{#each messages as message}
-			<div class="message">
+			<div class="message" in:fly={{ y: 20 }}>
 				{#if profile_pictures != "0"}
-					<img src={message.pfp} alt="Profile" />
+					<img class="avatar" src={message.pfp} alt="Profile" />
 				{/if}
 				{#if message.message.sender.identity.badges[0] && roles != "0"}
 					<span class="badge rainbow">
@@ -152,11 +164,11 @@
 				{/if}
 				<div class="sender">
 					<span style:color={message.message.sender.identity.color}>
-						{message.message.sender.username}
+						{message.message.sender.username}<b>:</b>
 					</span>
 				</div>
 				<div class="msg">
-					{message.message.content}
+					{@html messageFilter(message.message)}
 				</div>
 			</div>
 		{/each}

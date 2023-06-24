@@ -1,6 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
+    font-family: "Verdana";
 }
 
 .messages {
@@ -15,17 +16,25 @@
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
-    font-size: 32px;
+    font-size: 26px;
+    font-weight: bold;
 }
 
-.message img {
+.message .avatar {
     max-width: 100%;
     width: 80px;
     border-radius: 50%;
 }
 
 .message .msg {
+    line-height: 30px;
     color: white;
+}
+
+.message .msg img {
+    margin-right: 4px;
+    width: 35px;
+    vertical-align: middle;
 }
 
 .rainbow {
@@ -48,4 +57,8 @@
     100% {
         background-position: 100% 50%;
     }
+}
+
+b {
+    color: white;
 }
