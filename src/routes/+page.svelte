@@ -104,18 +104,6 @@
 		)
 	}
 
-	// Disconnect from Websocket (DEV)
-
-	async function disconnect() {
-		socket.close()
-
-		messages = []
-		pinned = ""
-		connected = ""
-
-		startSocket()
-	}
-
 	// Do stuff on component mount
 
 	onMount(async () => {
@@ -144,13 +132,6 @@
 		messages = messages
 	}
 </script>
-
-{#if !connected}
-	<input type="text" bind:value={username} />
-
-	<button on:click={connect}>Connect</button>
-	<button on:click={disconnect}>Disconnect</button>
-{/if}
 
 {#if connected == "0"}
 	<h1>Connecting...</h1>
