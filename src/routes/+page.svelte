@@ -134,7 +134,9 @@
 	// Always scroll to bottom when anything happens
 
 	afterUpdate(() => {
-		document.documentElement.scrollTop = document.documentElement.scrollHeight
+		if (connected) {
+			document.documentElement.scrollTop = document.documentElement.scrollHeight
+		}
 	})
 
 	// Remove messages that are no longer on the screen
