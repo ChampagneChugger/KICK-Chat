@@ -12,6 +12,7 @@ Replace the USERNAME placeholder with your KICK username (it's not case sensitiv
 That's it. If you wish to modify it a little bit, you could also pass optional parameters, such as: pictures, roles.
 
 pictures - disable display of profile pictures
+
 roles - disable display of user roles
 
 ### https://kick-chat-alpha.vercel.app/?username=USERNAME&pictures=0
