@@ -27,7 +27,7 @@
 	function messageFilter(input: any) {
 		let message: string = input.content
 
-		let emojiPattern = /\[emote:(\d+):[^\]]+\]/g
+		let emojiPattern = /\[emote:(\d+)[^\]]+\]/g
 
 		console.log(message)
 
