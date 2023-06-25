@@ -29,8 +29,6 @@
 
 		let emojiPattern = /\[emote:(\d+)[^\]]+\]/g
 
-		console.log(message)
-
 		//@ts-ignore
 		let messageNew = message.replace(emojiPattern, (match: string, number: string) => {
 			if (number) {
