@@ -29,34 +29,13 @@
 .message .msg {
     line-height: 30px;
     color: white;
+    word-wrap: break-word;
 }
 
 .message .msg img {
     margin-right: 4px;
     width: 35px;
     vertical-align: middle;
-}
-
-.rainbow {
-    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation-name: rainbow;
-    animation-iteration-count: infinite;
-    animation-duration: 5s;
-    animation-timing-function: linear;
-    background-size: 1000%;
-}
-
-@keyframes rainbow {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 100% 50%;
-    }
 }
 
 b {

@@ -2,6 +2,7 @@
 	import { onMount, afterUpdate } from "svelte"
 	import { page } from "$app/stores"
 	import { fly } from "svelte/transition"
+	import { generalEmojis } from "$lib/standard"
 
 	let socket: any
 	let username: string | null
@@ -38,6 +39,23 @@
 		return messageNew
 	}
 
+	async function message7TV(input: any) {
+		let message: string = input.content
+
+		let messagesCollection: string[] = message.split(" ")
+
+		for (let i = 0; i < messagesCollection.length; i++) {
+			for (let j = 0; j < generalEmojis.length; j++) {
+				if (messagesCollection[i] == generalEmojis[j].name) {
+					messagesCollection[i] = "<img src='" + generalEmojis[j].urls[1][1] + "' alt='7TV Emoji'>"
+					break
+				}
+			}
+		}
+
+		return messagesCollection.join(" ")
+	}
+
 	// Main function with all functionality
 
 	async function startSocket() {
@@ -62,6 +80,11 @@
 				if (!picture) {
 					picture = "/user.png"
 				}
+
+				let msg2 = JSON.parse(msg.data)
+				msg2.content = await message7TV(msg2)
+
+				msg.data = JSON.stringify(msg2)
 
 				messages.push({
 					eventType: eventType,
