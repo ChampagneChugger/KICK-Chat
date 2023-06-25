@@ -1,4 +1,4 @@
-# KICK Chat
+# KICK Chat with 7TV support!
 
 Display Kick chat on your stream via browser source.
 
