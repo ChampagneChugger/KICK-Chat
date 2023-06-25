@@ -27,9 +27,7 @@
 }
 
 .message .msg {
-    line-height: 30px;
     color: white;
-    word-wrap: break-word;
 }
 
 .message .msg img {

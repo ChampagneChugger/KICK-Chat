@@ -29,6 +29,8 @@
 
 		let emojiPattern = /\[emote:(\d+):[^\]]+\]/g
 
+		console.log(message)
+
 		//@ts-ignore
 		let messageNew = message.replace(emojiPattern, (match: string, number: string) => {
 			if (number) {
@@ -187,10 +189,10 @@
 				<div class="sender">
 					<span style:color={message.message.sender.identity.color}>
 						{message.message.sender.username}<b>:</b>
+						<span class="msg">
+							{@html messageFilter(message.message)}
+						</span>
 					</span>
-				</div>
-				<div class="msg">
-					{@html messageFilter(message.message)}
 				</div>
 			</div>
 		{/each}
