@@ -12,6 +12,7 @@
 	let messages: any[] = []
 	let pinned: string = ""
 	let connected: string = ""
+	let streamerID: string
 
 	// Get message sender profile picture
 
@@ -41,10 +42,9 @@
 
 	async function message7TV(input: any) {
 		let message: string = input.content
-		let senderID: number = input.sender.id
 		let sevenTVEmojis: any[]
 
-		const res = await fetch("https://7tv.io/v2/users/" + senderID + "/emotes")
+		const res = await fetch("https://7tv.io/v2/users/" + streamerID + "/emotes")
 		sevenTVEmojis = await res.json()
 
 		let messagesCollection: string[] = message.split(" ")
@@ -142,6 +142,8 @@
 		const res = await fetch("https://kick.com/api/v2/channels/" + username?.toLowerCase())
 
 		const data = await res.json()
+
+		streamerID = data.user_id
 
 		const { id } = data.chatroom
 
