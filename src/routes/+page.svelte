@@ -41,6 +41,11 @@
 
 	async function message7TV(input: any) {
 		let message: string = input.content
+		let senderID: number = input.sender.id
+		let sevenTVEmojis: any[]
+
+		const res = await fetch("https://7tv.io/v2/users/" + senderID + "/emotes")
+		sevenTVEmojis = await res.json()
 
 		let messagesCollection: string[] = message.split(" ")
 
@@ -48,6 +53,13 @@
 			for (let j = 0; j < generalEmojis.length; j++) {
 				if (messagesCollection[i] == generalEmojis[j].name) {
 					messagesCollection[i] = "<img src='" + generalEmojis[j].urls[1][1] + "' alt='7TV Emoji'>"
+					break
+				}
+			}
+
+			for (let j = 0; j < sevenTVEmojis.length; j++) {
+				if (messagesCollection[i] == sevenTVEmojis[j].name) {
+					messagesCollection[i] = "<img src='" + sevenTVEmojis[j].urls[1][1] + "' alt='7TV Emoji'>"
 					break
 				}
 			}
