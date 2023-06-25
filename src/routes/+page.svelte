@@ -25,7 +25,6 @@
 
 	function messageFilter(input: any) {
 		let message: string = input.content
-		let badges: string[] = input.sender.identity.badges
 
 		// Add badges
 
@@ -157,10 +156,12 @@
 				{#if profile_pictures != "0"}
 					<img class="avatar" src={message.pfp} alt="Profile" />
 				{/if}
-				{#if message.message.sender.identity.badges[0] && roles != "0"}
-					<span class="badge rainbow">
-						[{message.message.sender.identity.badges[0].text}]
-					</span>
+				{#if message.message.sender.identity.badges && roles != "0"}
+					{#each message.message.sender.identity.badges as { type }}
+						<span class="badge">
+							<img src={"/badges/" + type + ".svg"} alt={type} />
+						</span>
+					{/each}
 				{/if}
 				<div class="sender">
 					<span style:color={message.message.sender.identity.color}>
