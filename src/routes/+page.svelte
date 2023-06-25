@@ -26,8 +26,6 @@
 	function messageFilter(input: any) {
 		let message: string = input.content
 
-		// Add badges
-
 		let emojiPattern = /\[emote:(\d+):[^\]]+\]/g
 
 		//@ts-ignore
