@@ -179,11 +179,70 @@
 	afterUpdate(() => {
 		document.documentElement.scrollTop = document.documentElement.scrollHeight
 	})
+
+	async function auth1() {
+		let formData = new URLSearchParams()
+
+		formData.append("socket_id", "33126.1208596")
+		formData.append("channel_name", "private-userfeed.10476188")
+
+		const res = await fetch("https://kick.com/broadcasting/auth", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded"
+			},
+			body: formData.toString()
+		})
+
+		const data = await res.json()
+
+		console.log(data)
+	}
+
+	async function auth2() {
+		let formData = new URLSearchParams()
+
+		formData.append("socket_id", "33025.1184879")
+		formData.append("channel_name", "private-App.User.10476188")
+
+		const res = await fetch("https://kick.com/broadcasting/auth", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded"
+			},
+			body: formData.toString()
+		})
+
+		const data = await res.json()
+
+		console.log(data)
+	}
+
+	async function water() {
+		const res = await fetch("https://kick.com/api/v2/messages/send/9574012", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				authorization:
+					"Bearer eyJpdiI6IldVTjVRNFhRUElVbVRlOVY2cDFSckE9PSIsInZhbHVlIjoiSG45RGF6cGpvTmxHeHIwRkp5cnd3ejhueVQydnpjVDhVRVhzVmtzcmVYZktYZkUrNjFGQzBrWXJJdHUxa2wrL0pMQmN1d2hBVXNCcTBjN2hyWThVVEY2VU0vK2RhN2l2RzB1SzJtcE8zYlNhTG5FZ0FWdElZZ3dxZm05SDMrWFgiLCJtYWMiOiI0NzUxOWI4NjA2MDc0MDg3MzlhODRiNmI0ZTExOTdkMDI3OWIzYzM1ZDQ0OWEzMGNhZTQ5N2I5NTAxMGI2OGE5IiwidGFnIjoiIn0=",
+				"X-Xsrf-Token":
+					"eyJpdiI6IldVTjVRNFhRUElVbVRlOVY2cDFSckE9PSIsInZhbHVlIjoiSG45RGF6cGpvTmxHeHIwRkp5cnd3ejhueVQydnpjVDhVRVhzVmtzcmVYZktYZkUrNjFGQzBrWXJJdHUxa2wrL0pMQmN1d2hBVXNCcTBjN2hyWThVVEY2VU0vK2RhN2l2RzB1SzJtcE8zYlNhTG5FZ0FWdElZZ3dxZm05SDMrWFgiLCJtYWMiOiI0NzUxOWI4NjA2MDc0MDg3MzlhODRiNmI0ZTExOTdkMDI3OWIzYzM1ZDQ0OWEzMGNhZTQ5N2I5NTAxMGI2OGE5IiwidGFnIjoiIn0=",
+				"X-Socket-Id": "33095.1200620"
+			},
+			body: JSON.stringify({
+				content: "BUT I DID THIS",
+				type: "message"
+			})
+		})
+	}
 </script>
 
 {#if connected == "0"}
 	<h1>Connecting...</h1>
 {:else}
+	<button on:click={auth1}>Auth 1</button>
+	<button on:click={auth2}>Auth 2</button>
+	<button on:click={water}>Send message</button>
 	<h1>{pinned}</h1>
 	<div class="messages">
 		{#each messages as message}
